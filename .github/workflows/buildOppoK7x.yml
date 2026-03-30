@@ -45,7 +45,7 @@ jobs:
     - name: 下载内核源码
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone --depth=1 https://github.com/sanba0519/android_kernel_4.14_MT6853 android-kernel
+        git clone --depth=1 https://github.com/D1rty3g/android_kernel_4.14_MT6853 android-kernel
 
     - name: 集成 rsuntk KernelSU 并注入钩子
       run: |
@@ -167,8 +167,8 @@ jobs:
         export PATH=$GITHUB_WORKSPACE/kernel_workspace/clang-aosp/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc64/bin:$GITHUB_WORKSPACE/kernel_workspace/gcc32/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
-        export KBUILD_BUILD_HOST=coolapk@sanba
-        export KBUILD_BUILD_USER=GitHub@sanba0519
+        export KBUILD_BUILD_HOST=gh
+        export KBUILD_BUILD_USER=D1rty3g
 
         make -j$(nproc --all) O=out \
           CC="ccache clang" \
@@ -181,7 +181,7 @@ jobs:
     - name: 制作 AnyKernel3 卡刷包
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone --depth=1 https://github.com/sanba0519/AnyKernel3
+        git clone --depth=1 https://github.com/d1rty3g/AnyKernel3
         cd AnyKernel3
         sed -i 's|block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;|block=/dev/block/by-name/boot;|g' anykernel.sh
         sed -i 's/do.devicecheck=1/do.devicecheck=0/g' anykernel.sh

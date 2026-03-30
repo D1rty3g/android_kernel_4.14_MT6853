@@ -148,6 +148,9 @@ jobs:
 
         make O=out olddefconfig
 
+        ./scripts/config --file out/.config \
+          --set-str CONFIG_LOCALVERSION "-RKSU"
+
         if [ "${{ github.event.inputs.BBR }}" = "true" ]; then
           echo "启用 BBR..."
           ./scripts/config --file out/.config \
